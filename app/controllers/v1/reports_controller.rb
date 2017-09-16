@@ -33,8 +33,8 @@ class V1::ReportsController < ApplicationController
   end
 
   private
-  
+
   def report_params
-    params.require(:report).permit(:title, :body, :images)
+    params.require(:report).permit(:title, :body, images: [])
   end
 end
