@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: apisda_development
+  database: apisda_production
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: apisda_test
+  database: apisda_production
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,5 +81,8 @@ test:
 production:
   <<: *default
   database: apisda_production
-  username: apisda
-  password: <%= ENV['APISDA_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: admin123
+  host: localhost
+  port: 5432
+# <%= ENV['APISDA_DATABASE_PASSWORD'] %>
