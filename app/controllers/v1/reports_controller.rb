@@ -22,8 +22,18 @@ class V1::ReportsController < ApplicationController
     end
   end
 
-  def show
+  def update
     @report = Report.where(id: params[:id]).first
+
+    if @report.update_attributes(report_params)
+      render json: @report, status: :ok
+    else
+      head(:unprocessable_entity)
+    end
+  end
+
+  def show
+    @report = Report.find(params[:id])
 
     if @report != nil 
       render json: @report, status: :ok
