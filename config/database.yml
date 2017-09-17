@@ -81,8 +81,7 @@ test:
 production:
   <<: *default
   database: apisda_production
-  username: postgres
-  password: admin123
+  username: <%= ENV['APISDA_DATABASE_USERNAME'] %>
+  password: <%= ENV['APISDA_DATABASE_PASSWORD'] %>
   host: localhost
   port: 5432
-# <%= ENV['APISDA_DATABASE_PASSWORD'] %>
