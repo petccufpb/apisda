@@ -10,15 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916214705) do
+ActiveRecord::Schema.define(version: 20170917004519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
+
+  create_table "indicators", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.string "metric", null: false
+    t.string "status"
+    t.json "samples", null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "reports", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.string "images", array: true
+    t.string "title", null: false
+    t.text "body", null: false
+    t.string "images", null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
