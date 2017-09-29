@@ -1,4 +1,4 @@
-class V1::IndicatorsController < ApplicationController
+class Api::V1::IndicatorsController < ApplicationController
   def index
     @indicators = Indicator.all
 
@@ -24,8 +24,8 @@ class V1::IndicatorsController < ApplicationController
 
   def update
     @indicator = Indicator.where(id: params[:id]).first
-
-    if @report.update_attributes(indicators_params)
+    
+    if @indicator.update(indicators_params)
       render json: @indicator, status: :ok
     else
       head(:unprocessable_entity)
@@ -43,8 +43,8 @@ class V1::IndicatorsController < ApplicationController
   end
 
   private
-
-  def indicators_params
-    params.require(:indicator).permit(:name, :description, :metric, :status, samples: [:value, :date])
-  end
+  # private methods
+    def indicators_params
+      params.require(:indicator).permit(:name, :description, :metric, :status, samples: [:value, :date])
+    end
 end

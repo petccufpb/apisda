@@ -1,4 +1,4 @@
-class V1::ReportsController < ApplicationController
+class Api::V1::ReportsController < ApplicationController
   def index
     @reports = Report.all
 
@@ -25,7 +25,7 @@ class V1::ReportsController < ApplicationController
   def update
     @report = Report.where(id: params[:id]).first
 
-    if @report.update_attributes(report_params)
+    if @report.update(report_params)
       render json: @report, status: :ok
     else
       head(:unprocessable_entity)
@@ -43,8 +43,8 @@ class V1::ReportsController < ApplicationController
   end
 
   private
-
-  def report_params
-    params.require(:report).permit(:title, :body, images: [])
-  end
+  # privates methods
+    def report_params
+      params.require(:report).permit(:title, :body, images: [])
+    end
 end
