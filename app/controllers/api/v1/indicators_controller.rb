@@ -13,7 +13,7 @@ class Api::V1::IndicatorsController < ApplicationController
   end
 
   def destroy
-    @indicator = Indicator.where(id: params[:id]).first
+    @indicator = Indicator.find(params[:id])
 
     if @indicator.destroy
       head(:ok)
@@ -23,7 +23,7 @@ class Api::V1::IndicatorsController < ApplicationController
   end
 
   def update
-    @indicator = Indicator.where(id: params[:id]).first
+    @indicator = Indicator.find(params[:id])
     
     if @indicator.update(indicators_params)
       render json: @indicator, status: :ok
@@ -33,7 +33,7 @@ class Api::V1::IndicatorsController < ApplicationController
   end
 
   def show
-    @indicator = Indicator.where(id: params[:id]).first
+    @indicator = Indicator.find(params[:id])
 
     if @indicator != nil
       render json: @indicator, status: :ok

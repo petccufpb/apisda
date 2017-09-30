@@ -13,7 +13,7 @@ class Api::V1::ReportsController < ApplicationController
   end
 
   def destroy
-    @report = Report.where(id: params[:id]).first
+    @report = Report.find(params[:id])
 
     if @report.destroy 
       head(:ok)
@@ -23,7 +23,7 @@ class Api::V1::ReportsController < ApplicationController
   end
 
   def update
-    @report = Report.where(id: params[:id]).first
+    @report = Report.find(params[:id])
 
     if @report.update(report_params)
       render json: @report, status: :ok
@@ -43,7 +43,7 @@ class Api::V1::ReportsController < ApplicationController
   end
 
   private
-  # privates methods
+  # private methods
     def report_params
       params.require(:report).permit(:title, :body, images: [])
     end
