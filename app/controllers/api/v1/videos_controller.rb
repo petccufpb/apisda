@@ -33,10 +33,10 @@ class Api::V1::VideosController < ApplicationController
   end
 
   def show
-    @videos = Video.find(params[:id])
+    @video = Video.find(params[:id])
 
-    if @videos != nil
-      render json: @videos, status: ok
+    if @video != nil
+      render json: @video, status: :ok
     else
       head(:not_found)
     end
